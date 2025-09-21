@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shutter & Soul - Sign Up</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="validation.js"></script> </head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Shutter & Soul</h1>
+      <p>Capture the moments that matter.</p>
+    </div>
+    <form action="/signup" method="post" class="signup-form" onsubmit="return validateForm()"> <h2>Sign Up</h2>
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <span id="username-error" class="error-message"></span> </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <span id="email-error" class="error-message"></span>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <span id="password-error" class="error-message"></span>
+      </div>
+      <div class="form-group">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required>
+        <span id="first-name-error" class="error-message"></span>
+      </div>
+      <div class="form-group">
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required>
+        <span id="last-name-error" class="error-message"></span>
+      </div>
+      <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location">
+      </div>
+      <div class="form-group">
+        <label for="bio">Bio (Optional):</label>
+        <textarea id="bio" name="bio" rows="4"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="website">Website (Optional):</label>
+        <input type="text" id="website" name="website">
+      </div>
+      <button type="submit">Sign Up</button>
+      <p class="have-account">Already have an account? <a href="login.html">Login</a></p>
+    </form>
+  </div>
+</body>
+</html>

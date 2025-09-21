@@ -17,7 +17,6 @@ A webhook is configured in the repository's settings to notify Jenkins of any co
 
 Payload URL: The webhook's payload URL points to our Jenkins server's GitHub webhook endpoint. For local development, we used a tunneling service like Localtunnel to expose our local Jenkins server to the public internet.
 
-Example URL: https://your-tunnel-url.loca.lt/github-webhook/
 
 Content Type: The content type is set to application/json, which is the standard format for GitHub webhooks.
 
@@ -55,5 +54,3 @@ GitHub detects the push event and sends a webhook payload to the Jenkins server'
 Jenkins receives the payload and, because of the githubPush() trigger in the Jenkinsfile, it starts a new build job.
 
 Jenkins executes the pipeline steps defined in the Jenkinsfile, ensuring the latest code is built and verified automatically.
-
-test

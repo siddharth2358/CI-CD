@@ -14,12 +14,17 @@ pipeline {
                 echo 'Building project...'
             }
         }
-        stage('Upload to S3') { // New stage for S3 upload
+        stage('Upload to S3') {
             steps {
                 s3Upload(
-                    file: 'your-build-artifact.zip', // Replace with the path to your file
-                    bucket: 'your-s3-bucket-name',   // Replace with your bucket name
-                    credentialsId: 'aws-s3-upload-creds' // Replace with your credentials ID
+                    entries: [
+                        [
+                            bucket: 'your-s3-bucket-name',
+                            credentialsId: 'aws-s3-upload-creds',
+                            file: 'your-build-artifact.zip',
+                            path: 'optional-path-in-bucket'
+                        ]
+                    ]
                 )
             }
         }

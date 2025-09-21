@@ -16,6 +16,12 @@ pipeline {
             }
         }
 
-        
+        stage('Upload to S3') {
+    steps {
+        s3Upload(
+            file: 'build/my-artifact.zip',
+            bucket: 'my-s3-bucket',
+            credentialsId: 'jenkins-s3-user'
+        )
     }
 }

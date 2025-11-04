@@ -32,16 +32,14 @@ pipeline {
                 archiveArtifacts artifacts: 'target/myartifact.zip', fingerprint: true
             }
         }
-        stage('Upload to S3 (plugin)') {
-            steps {
-                // requires "Pipeline: AWS Steps" / S3 plugin and credential id 'aws-creds'
-                s3Upload(bucket: 'my-jenkins-artifacts-ci-cd',
-                         path: 'path/',
-                         workingDir: 's3://my-jenkins-artifacts-ci-cd/WT_project/target',
-                         includePathPattern: 'myartifact.zip',
-                         acl: 'Private',
-                         credentialsId: 'aws-creds')
-            }
+        stage('Upload to S3') {
+    steps {
+        withAWS(region: 'ap-south-1', credentials: 'aws-creds') {
+            s3Upload(
+                file: 'target/myartifact.zip',
+                bucket: 'my-jenkins-artifacts-ci-cd',
+                path: 'builds/myartifact.zip'
+            )
         }
     }
 }

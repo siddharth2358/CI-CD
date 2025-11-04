@@ -1,6 +1,12 @@
 pipeline {
     agent any
 
+    environment {
+        // ensure AWS SDK uses the bucket region
+        AWS_REGION = 'us-east-1'
+        AWS_DEFAULT_REGION = 'us-east-1'
+    }
+
     triggers {
         // Trigger builds automatically when GitHub push events occur
         githubPush()
@@ -41,18 +47,18 @@ pipeline {
             }
         }
 
-        stage('Upload to S3') {
-            steps {
-                withAWS(region: 'ap-south-1', credentials: 'aws-creds') {
-                    s3Upload(
-                        file: 'target/myartifact.zip',
-                        bucket: 'my-jenkins-artifacts-ci-cd',
-                        path: 'builds/myartifact.zip'
-                    )
-                }
-            }
+       stage('Upload to S3') {
+    steps {
+        withAWS(region: 'us-east-1', credentials: 'aws-creds') {
+            s3Upload(
+                file: 'target/myartifact.zip',
+                bucket: 'my-jenkins-artifacts-ci-cd',
+                path: 'builds/myartifact.zip'
+            )
         }
     }
+}
+
 
     post {
         success {

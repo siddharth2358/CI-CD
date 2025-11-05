@@ -50,15 +50,19 @@ pipeline {
         stage('Upload to S3') {
             steps {
                 withAWS(region: 'us-east-1', credentials: 'aws-creds') {
+                    // upload all files inside the WT_project directory (preserves structure)
                     s3Upload(
-                        file: 'target/myartifact.zip',
                         bucket: 'my-jenkins-artifacts-ci-cd',
-                        path: 'builds/myartifact.zip'
+                        workingDir: 'WT_project',
+                        path: 'WT_project/',
+                        includePathPattern: '**/*',
+                        excludePathPattern: '.git/**',
+                        acl: 'Private'
                     )
                 }
             }
         }
-    }
+
 
     post {
         success {
